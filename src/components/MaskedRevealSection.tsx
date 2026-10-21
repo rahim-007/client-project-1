@@ -121,10 +121,10 @@ export function MaskedRevealSection() {
               }
             }}
           >
-            {/* Background Image: AFTER (Supplied Architectural Frame 0050) */}
+            {/* Background Image: AFTER (Client Turnkey Transformation) */}
             <div className="absolute inset-0 w-full h-full">
               <img
-                src="/frames/frame-0050.jpg"
+                src="/projects/renovation/after.png"
                 alt="Completed luxury interior execution by S.M.S DECORS"
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
@@ -143,9 +143,9 @@ export function MaskedRevealSection() {
               }}
             >
               <img
-                src="/frames/frame-0005.jpg"
+                src="/projects/renovation/before.jpg"
                 alt="Raw structural framework before renovation"
-                className="w-full h-full object-cover object-center filter grayscale contrast-150 brightness-75 invert-[0.1]"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
               />
               <div className="absolute top-6 left-6 sm:top-8 sm:left-8 bg-[#171715]/85 backdrop-blur-md text-[#FAF8F4] px-4 py-2 rounded-full text-xs font-mono tracking-widest uppercase flex items-center gap-2 shadow-lg">
@@ -169,7 +169,7 @@ export function MaskedRevealSection() {
             <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 flex flex-wrap items-center justify-between gap-4 pointer-events-none">
               <div className="bg-[#171715]/90 backdrop-blur-md text-[#FAF8F4] px-4 py-2 rounded-full text-xs font-light">
                 <span className="text-[#9C805B] font-mono mr-2">SPEC:</span>
-                <span>Honed Travertine · Burma Teak Joinery · 2700K Warm Coves</span>
+                <span>Exposed Structural Shell → Dual-Tier LED Cove Ceilings · Hardwood Flooring</span>
               </div>
               <div className="hidden sm:flex items-center gap-2 bg-[#FAF8F4]/95 backdrop-blur-md text-[#171715] px-4 py-2 rounded-full text-xs font-mono tracking-wider">
                 <span>EXECUTION: 10 WEEKS TURNKEY</span>
