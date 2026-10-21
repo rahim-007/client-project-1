@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #F3EFE8;
+  --color-charcoal: #171715;
+  --color-stone: #B7AA97;
+  --color-bronze: #9C805B;
+  --color-softwhite: #FAF8F4;
+
+  --color-ivory-light: #FAF8F4;
+  --color-charcoal-light: #242421;
+  --color-charcoal-deep: #0F0F0E;
+  --color-bronze-light: #B49B78;
+  --color-bronze-dark: #7F6847;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Custom Base Styles */
+html {
+  font-family: var(--font-sans);
+  background-color: #F3EFE8;
+  color: #171715;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+  background-color: #F3EFE8;
+}
+
+/* Luxury Architectural Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3EFE8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9C805B;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7F6847;
+}
+
+/* Masked Image Reveal Keyframes */
+@keyframes maskUnveil {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-mask-unveil {
+  animation: maskUnveil 1.2s var(--ease-luxury) forwards;
+}
+
+/* Architectural Fine Lines and Borders */
+.border-fine {
+  border-color: rgba(138, 118, 88, 0.22);
+}
+
+.border-fine-dark {
+  border-color: rgba(243, 239, 231, 0.15);
+}
+
+/* Film Grain Canvas Texture */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Double-bezel outer shell styling */
+.double-bezel-ivory {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(138, 118, 88, 0.2);
+  box-shadow: 0 20px 40px -15px rgba(41, 42, 38, 0.05);
+}
+
+.double-bezel-charcoal {
+  background: rgba(41, 42, 38, 0.85);
+  border: 1px solid rgba(243, 239, 231, 0.12);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.4);
+}
+
+/* Horizontal Scroll Container */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
