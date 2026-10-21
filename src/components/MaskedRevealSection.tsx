@@ -143,7 +143,7 @@ export function MaskedRevealSection() {
               }}
             >
               <img
-                src="/projects/renovation/before.jpg"
+                src="/projects/renovation/before.png"
                 alt="Raw structural framework before renovation"
                 className="w-full h-full object-cover object-center"
                 loading="lazy"

@@ -45,7 +45,7 @@ export const PROJECTS_DATA: Project[] = [
     area: '2,400 sq.ft',
     coverImage: '/projects/renovation/after.png',
     galleryImages: [
-      '/projects/renovation/before.jpg'
+      '/projects/renovation/before.png'
     ],
     description: 'Metamorphosis of a raw industrial rooftop structural framework into a climate-controlled executive multipurpose hall. Features dual-tier coffered false ceilings with warm yellow and blue indirect LED coves, precision electrical ducting, and engineered wood flooring.',
     scope: ['Structural Shell Enclosure', 'Dual-Tier False Ceiling', 'HVAC & Lighting Integration', 'Engineered Flooring Installation'],
