@@ -23,9 +23,9 @@ const STORY_STEPS: StoryStep[] = [
     title: 'The Tactile Honesty of Living Materials',
     narrative:
       'We reject paper-thin faux finishes. Since our founding in 2015, S.M.S DECORS has championed authentic materials that age with dignity under Chennai’s climate: solid seasoned teak, honed Roman travertine, fluted glass, and hand-rubbed bronze reveals.',
-    image: '/frames/frame-0060.jpg',
-    caption: 'Honed travertine and natural timber acoustic wall paneling',
-    materials: ['Natural Burma Teak', 'Honed Travertine', 'Muted Bronze 9C805B', 'Diffused Daylighting'],
+    image: '/projects/residential/brick-console.png',
+    caption: 'Real wirecut brick masonry accent wall with solid live-edge timber console',
+    materials: ['Wirecut Terracotta Brick', 'Solid Hardwood Slab', 'Wrought Iron Supports', 'Polished Stone'],
     metrics: [
       { label: 'Surface Durability', value: '15+ Years' },
       { label: 'Thermal Absorption', value: 'Optimized' },
@@ -39,9 +39,9 @@ const STORY_STEPS: StoryStep[] = [
     title: 'Calibrated Sightlines and Natural Illumination',
     narrative:
       'True luxury in interior architecture is effortless circulation. We systematically interrogate how light moves across a room throughout the day, sculpting ceiling coves and sightlines so spaces feel expansive, tranquil, and inherently intuitive.',
-    image: '/frames/frame-0110.jpg',
-    caption: 'Floor-to-ceiling ambient lighting and seamless living-dining axis',
-    materials: ['Architectural 2700K LEDs', 'Acoustic Ceiling Plane', 'Concealed Millwork', 'Fluted Glazing'],
+    image: '/projects/residential/timber-corridor.png',
+    caption: 'Architectural corridor ceiling with continuous recessed transversal LED profiles',
+    materials: ['Walnut Timber Coffering', 'Transverse LED Profiles', 'Perimeter Wall Wash', 'Low-VOC Matte Paint'],
     metrics: [
       { label: 'Daylight Optimization', value: 'Circadian' },
       { label: 'Circulation Efficiency', value: 'Intuitive' },
@@ -55,9 +55,9 @@ const STORY_STEPS: StoryStep[] = [
     title: 'Artisanal Joinery & Bespoke Cabinetry',
     narrative:
       'Every credenza, wardrobe, and partition is drafted with half-millimeter precision. We combine precision joinery with traditional hand-finishing, utilizing seasoned hardwoods to withstand humidity while delivering silent soft-close actuation.',
-    image: '/frames/frame-0170.jpg',
-    caption: 'Integrated modular joinery with concealed German kinetic runners',
-    materials: ['Seasoned Teakwood', 'Natural Timber Veneer', 'Concealed Soft-Close Hardware', 'Matte Linseed Seal'],
+    image: '/projects/residential/walnut-living.png',
+    caption: 'Book-matched walnut veneer wall cladding with frameless glass curio display',
+    materials: ['Book-Matched Walnut', 'Frameless Float Glass', 'Exposed Brick Accent', 'Italian Botticino Marble'],
     metrics: [
       { label: 'Joinery Tolerance', value: '±0.5 mm' },
       { label: 'Acoustic Rating', value: 'NRC 0.82' },
@@ -71,8 +71,8 @@ const STORY_STEPS: StoryStep[] = [
     title: 'Rigorous Turnkey Engineering & Site Mastery',
     narrative:
       'Architecture fails if execution falters. S.M.S DECORS retains dedicated on-site supervisors, rigorous MEP coordination, and strict milestone adherence. Clients receive transparent schedule reporting from initial concept to final white-glove handover.',
-    image: '/frames/frame-0230.jpg',
-    caption: 'Turnkey handover of an executive residential penthouse in Chennai',
+    image: '/projects/renovation/after.png',
+    caption: 'Turnkey structural transformation with dual-tier false ceiling and LED coves',
     materials: ['Dedicated Site Supervision', 'Daily Milestone Tracking', 'Zero-Dust Clean Handover', 'Post-Handover Warranty'],
     metrics: [
       { label: 'Handover Precision', value: '100% On-Plan' },

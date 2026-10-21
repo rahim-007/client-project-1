@@ -15,44 +15,44 @@ interface MaterialPin {
 
 const MATERIAL_PINS: MaterialPin[] = [
   {
-    id: 'teak',
-    name: 'Seasoned Burma Teak',
+    id: 'walnut',
+    name: 'Book-Matched Walnut Veneer',
     tag: 'TIMBER JOINERY · 01',
-    x: 28,
-    y: 52,
-    spec: 'Quarter-sawn heartwood with breathable matte linseed oil seal',
-    acoustic: 'NRC 0.35 Warm Reflection',
-    provenance: 'FSC Certified Sustainable Seasoned Teak',
+    x: 32,
+    y: 42,
+    spec: 'Natural book-matched walnut veneer with architectural horizontal express joints',
+    acoustic: 'NRC 0.38 Warm Diffusion',
+    provenance: 'Hand-selected architectural grade veneer',
   },
   {
-    id: 'travertine',
-    name: 'Honed Roman Travertine',
+    id: 'marble',
+    name: 'Polished Italian Marble',
     tag: 'STONE FLOORING · 02',
-    x: 62,
-    y: 78,
-    spec: 'Continuous monolithic slabs with micro-beveled 1mm joints',
-    acoustic: 'High thermal mass & natural density',
-    provenance: 'Hand-selected cross-cut stone',
+    x: 35,
+    y: 84,
+    spec: 'Monolithic polished marble slabs with seamless micro-grouted joints',
+    acoustic: 'High thermal mass & natural reflectivity',
+    provenance: 'Imported natural stone slabs',
   },
   {
     id: 'lighting',
-    name: '2700K Architectural Cove',
-    tag: 'CIRCADIAN COVE · 03',
-    x: 48,
-    y: 22,
-    spec: 'Indirect recessed linear cove illumination with 98 CRI fidelity',
-    acoustic: 'Discreet zero-glare spatial wash',
-    provenance: 'Custom calibrated architectural LED',
+    name: '2700K Architectural Potlights',
+    tag: 'CEILING COVE · 03',
+    x: 52,
+    y: 12,
+    spec: 'Recessed low-glare warm architectural potlights with 98 CRI fidelity',
+    acoustic: 'Zero-glare focused accent wash',
+    provenance: 'Architectural grade solid-state LEDs',
   },
   {
     id: 'glass',
-    name: 'Fluted Acoustic Glazing',
-    tag: 'SPATIAL SCREEN · 04',
-    x: 78,
-    y: 44,
-    spec: 'Laminated sound-dampening acoustic interlayer with rhythmic reed flute',
-    acoustic: 'STC 42 / Acoustic separation',
-    provenance: 'Low-iron architectural clarity glass',
+    name: 'Frameless Float Glass Curio',
+    tag: 'GLASS DISPLAY · 04',
+    x: 54,
+    y: 46,
+    spec: 'Toughened frameless corner glass display with integrated warm edge lighting',
+    acoustic: 'Architectural transparent separation',
+    provenance: 'Optically clear low-iron float glass',
   },
 ];
 
@@ -125,8 +125,8 @@ export function SignatureMaterialLens() {
             >
               {/* Architectural Interior Study Frame */}
               <img
-                src="/frames/frame-0110.jpg"
-                alt="Architectural Material Study"
+                src="/projects/residential/walnut-living.png"
+                alt="S.M.S DECORS Material Architecture Study"
                 className="w-full h-full object-cover opacity-85 transition-opacity duration-300 group-hover:opacity-95"
               />
 

@@ -29,8 +29,8 @@ export function ArchitecturalImageBand() {
       <div className="absolute inset-0 overflow-hidden">
         <motion.div style={{ y }} className="relative w-full h-[120%] -top-[10%]">
           <img
-            src="/frames/frame-0185.jpg"
-            alt="S.M.S DECORS Luxury Interior Architectural Sequence"
+            src="/projects/residential/timber-corridor.png"
+            alt="S.M.S DECORS Architectural Ceiling & Illumination Detailing"
             className="w-full h-full object-cover opacity-75"
             loading="lazy"
           />
