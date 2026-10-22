@@ -25,40 +25,72 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
   const [initialFrameLoaded, setInitialFrameLoaded] = useState<boolean>(false);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  // Scroll tracking: compact, responsive 200vh height eliminating all unwanted dead space
+  // Direct 1:1 scroll tracking: zero input lag, 100% responsive to user wheel & trackpad
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  // Stage 1: Introduction (0 – 20%) Centered
-  const stage1Opacity = useTransform(scrollYProgress, [0, 0.14, 0.20], [1, 1, 0]);
-  const stage1Y = useTransform(scrollYProgress, [0, 0.14, 0.20], [0, 0, -20]);
-  const stage1Pointer = useTransform(scrollYProgress, (p) => (p <= 0.20 ? 'auto' : 'none'));
+  // Stage 1: Introduction (0 – 23%) Centered
+  const stage1Opacity = useTransform(scrollYProgress, [0, 0.15, 0.23], [1, 1, 0]);
+  const stage1Y = useTransform(scrollYProgress, [0, 0.15, 0.23], [0, 0, -20]);
+  const stage1Pointer = useTransform(scrollYProgress, (p) => (p <= 0.21 ? 'auto' : 'none'));
 
-  // Stage 2: Living spaces (20 – 45%) Left side
-  const stage2Opacity = useTransform(scrollYProgress, [0.20, 0.26, 0.39, 0.45], [0, 1, 1, 0]);
-  const stage2Y = useTransform(scrollYProgress, [0.20, 0.26, 0.39, 0.45], [20, 0, 0, -20]);
+  // Stage 2: "01 / THE ART OF LIVING" (23 – 57%) Left side - PINNED DWELL PLATEAU (0.29 -> 0.51)
+  const stage2Opacity = useTransform(
+    scrollYProgress,
+    [0.23, 0.29, 0.51, 0.57],
+    [0, 1, 1, 0]
+  );
+  const stage2Y = useTransform(
+    scrollYProgress,
+    [0.23, 0.29, 0.51, 0.57],
+    [20, 0, 0, -20]
+  );
   const stage2Pointer = useTransform(scrollYProgress, (p) =>
-    p >= 0.20 && p <= 0.45 ? 'auto' : 'none'
+    p >= 0.24 && p <= 0.56 ? 'auto' : 'none'
   );
 
-  // Stage 3: Material and architectural details (45 – 75%) Right side
-  const stage3Opacity = useTransform(scrollYProgress, [0.45, 0.52, 0.68, 0.75], [0, 1, 1, 0]);
-  const stage3Y = useTransform(scrollYProgress, [0.45, 0.52, 0.68, 0.75], [20, 0, 0, -20]);
+  // Stage 3: "02 / MATERIALS & DETAIL" (57 – 89%) Right side - PINNED DWELL PLATEAU (0.63 -> 0.84)
+  const stage3Opacity = useTransform(
+    scrollYProgress,
+    [0.57, 0.63, 0.84, 0.90],
+    [0, 1, 1, 0]
+  );
+  const stage3Y = useTransform(
+    scrollYProgress,
+    [0.57, 0.63, 0.84, 0.90],
+    [20, 0, 0, -20]
+  );
   const stage3Pointer = useTransform(scrollYProgress, (p) =>
-    p >= 0.45 && p <= 0.75 ? 'auto' : 'none'
+    p >= 0.58 && p <= 0.89 ? 'auto' : 'none'
   );
 
-  // Stage 4: Final cinematic frame (75 – 100%) Centered
-  // Reaches full opacity by 0.82 and holds firmly through 1.00 for clear dwell
-  const stage4Opacity = useTransform(scrollYProgress, [0.75, 0.82, 1.0], [0, 1, 1]);
-  const stage4Y = useTransform(scrollYProgress, [0.75, 0.82, 1.0], [20, 0, 0]);
-  const stage4Pointer = useTransform(scrollYProgress, (p) => (p >= 0.75 ? 'auto' : 'none'));
+  // Stage 4: Finale & Vision (89 – 100%) Centered - PINNED DWELL PLATEAU (0.94 -> 1.00)
+  const stage4Opacity = useTransform(
+    scrollYProgress,
+    [0.89, 0.94, 1.0],
+    [0, 1, 1]
+  );
+  const stage4Y = useTransform(
+    scrollYProgress,
+    [0.89, 0.94, 1.0],
+    [20, 0, 0]
+  );
+  const stage4Pointer = useTransform(scrollYProgress, (p) => (p >= 0.90 ? 'auto' : 'none'));
 
   // Scrim opacity drivers localized to active text blocks
-  const leftScrimOpacity = useTransform(scrollYProgress, [0.18, 0.25, 0.40, 0.47], [0, 0.6, 0.6, 0]);
-  const rightScrimOpacity = useTransform(scrollYProgress, [0.43, 0.50, 0.70, 0.77], [0, 0.6, 0.6, 0]);
+  const leftScrimOpacity = useTransform(
+    scrollYProgress,
+    [0.21, 0.28, 0.52, 0.58],
+    [0, 0.72, 0.72, 0]
+  );
+  const rightScrimOpacity = useTransform(
+    scrollYProgress,
+    [0.55, 0.62, 0.85, 0.91],
+    [0, 0.72, 0.72, 0]
+  );
+
 
   // Draw image preserving 16:9 composition without distortion
   const drawFrame = useCallback((img: HTMLImageElement) => {
@@ -85,18 +117,18 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     ctx.drawImage(img, nx, ny, nw, nh);
   }, []);
 
-  // Handle canvas sizing with device pixel ratio cap
+  // Handle canvas sizing with performance-optimized DPR cap and opaque context
   const handleResize = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     const rect = canvas.getBoundingClientRect();
 
     canvas.width = Math.round(rect.width * dpr);
     canvas.height = Math.round(rect.height * dpr);
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (ctx) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'medium';
@@ -108,6 +140,36 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       drawFrame(img);
     }
   }, [drawFrame]);
+
+  // Non-linear camera frame progression: camera softly holds during stuck plateaus
+  const getFrameForProgress = useCallback((p: number): number => {
+    const t = Math.max(0, Math.min(1, p));
+    if (t <= 0.16) {
+      const factor = t / 0.16;
+      return Math.round(factor * 24);
+    } else if (t <= 0.29) {
+      const factor = (t - 0.16) / (0.29 - 0.16);
+      return Math.round(24 + factor * (78 - 24));
+    } else if (t <= 0.51) {
+      // Stuck in The Art of Living (camera gently hovers in living room: frames 78 -> 84)
+      const factor = (t - 0.29) / (0.51 - 0.29);
+      return Math.round(78 + factor * (84 - 78));
+    } else if (t <= 0.63) {
+      // Transition from Art of Living to Materials & Detail
+      const factor = (t - 0.51) / (0.63 - 0.51);
+      return Math.round(84 + factor * (158 - 84));
+    } else if (t <= 0.84) {
+      // Stuck in Materials & Detail (camera gently hovers on material details: frames 158 -> 165)
+      const factor = (t - 0.63) / (0.84 - 0.63);
+      return Math.round(158 + factor * (165 - 158));
+    } else if (t <= 0.94) {
+      // Transition to final wide shot
+      const factor = (t - 0.84) / (0.94 - 0.84);
+      return Math.round(165 + factor * (239 - 165));
+    } else {
+      return TOTAL_FRAMES - 1;
+    }
+  }, []);
 
   // High-Performance Interleaved Preloader: loads skeleton instantly with async off-thread decoding
   useEffect(() => {
@@ -142,7 +204,6 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     });
 
     // Priority 2: Skeleton sweep across the entire sequence (every 4th frame: 0, 4, 8... 239)
-    // Within ~100ms, the entire timeline has loaded anchors so no frame drop ever occurs
     for (let i = 0; i < TOTAL_FRAMES; i += 4) {
       loadSingleFrame(i);
     }
@@ -170,7 +231,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     };
   }, [drawFrame, handleResize]);
 
-  // Sync scrollYProgress to target
+  // Sync scrollYProgress directly with state-change guard (prevents unnecessary re-renders)
   useEffect(() => {
     if (prefersReducedMotion) return;
 
@@ -181,7 +242,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     return () => unsubscribe();
   }, [scrollYProgress, prefersReducedMotion]);
 
-  // Dedicated buttery smooth lerp & canvas render loop with 100% completion plateau
+  // High-performance direct RAF render loop with responsive, lag-free lerp
   useEffect(() => {
     if (prefersReducedMotion) return;
 
@@ -191,18 +252,16 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       if (!isRunning) return;
 
       const diff = targetProgressRef.current - currentProgressRef.current;
-      if (Math.abs(diff) > 0.00002) {
-        currentProgressRef.current += diff * 0.28;
+      if (Math.abs(diff) > 0.00005) {
+        currentProgressRef.current += diff * 0.45;
       } else {
         currentProgressRef.current = targetProgressRef.current;
       }
 
-      // Map progress 0 -> 0.82 to frames 0 -> TOTAL_FRAMES - 1
-      // From 0.82 to 1.0, hold at frame TOTAL_FRAMES - 1 (100% completion plateau)
-      const scrubProgress = Math.min(1, Math.max(0, currentProgressRef.current / 0.82));
+      // Map progress to camera frame with hold plateaus
       const frameIndex = Math.min(
         TOTAL_FRAMES - 1,
-        Math.max(0, Math.round(scrubProgress * (TOTAL_FRAMES - 1)))
+        Math.max(0, getFrameForProgress(currentProgressRef.current))
       );
       targetFrameRef.current = frameIndex;
 
@@ -216,7 +275,6 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       let actualDrawnIndex = frameIndex;
 
       if (!imgToRender || !imgToRender.complete || imgToRender.naturalWidth === 0) {
-        // Search backwards first
         for (let j = frameIndex - 1; j >= 0; j--) {
           const candidate = imagesRef.current[j];
           if (candidate && candidate.complete && candidate.naturalWidth > 0) {
@@ -225,7 +283,6 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             break;
           }
         }
-        // If not found backwards, search forwards
         if (!imgToRender) {
           for (let j = frameIndex + 1; j < TOTAL_FRAMES; j++) {
             const candidate = imagesRef.current[j];
@@ -238,7 +295,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
         }
       }
 
-      // Draw and only mark actualDrawnIndex so it updates as soon as better frame loads
+      // Draw only if frame changed
       if (imgToRender && imgToRender.complete && imgToRender.naturalWidth > 0) {
         if (lastDrawnFrameRef.current !== actualDrawnIndex) {
           drawFrame(imgToRender);
@@ -257,7 +314,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [drawFrame, prefersReducedMotion]);
+  }, [drawFrame, getFrameForProgress, prefersReducedMotion]);
 
   // Reduced motion alternative: static cinematic frame
   if (prefersReducedMotion) {
@@ -305,11 +362,11 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       id="hero"
       ref={containerRef}
       data-sc-act="scrub"
-      className="relative w-full h-[250vh] bg-[#171715] text-[#FAF8F4]"
+      className="relative w-full h-[360vh] bg-[#171715] text-[#FAF8F4]"
       aria-label="Cinematic Architectural Sequence"
     >
       {/* Pinned Viewport Canvas Stage (100dvh) */}
-      <div className="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden flex flex-col justify-between pb-8">
+      <div className="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden flex flex-col justify-between pb-6">
         {/* HTML5 Canvas for continuous scroll-controlled frame sequence */}
         <canvas
           ref={canvasRef}
@@ -334,12 +391,12 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
         {/* Dynamic localized scrims behind Stage 2 (Left) and Stage 3 (Right) */}
         <motion.div
           style={{ opacity: leftScrimOpacity }}
-          className="absolute inset-y-0 left-0 w-full md:w-3/5 bg-gradient-to-r from-[#171715]/90 via-[#171715]/50 to-transparent pointer-events-none"
+          className="absolute inset-y-0 left-0 w-full md:w-3/5 bg-gradient-to-r from-[#171715]/95 via-[#171715]/60 to-transparent pointer-events-none"
           aria-hidden="true"
         />
         <motion.div
           style={{ opacity: rightScrimOpacity }}
-          className="absolute inset-y-0 right-0 w-full md:w-3/5 bg-gradient-to-l from-[#171715]/90 via-[#171715]/50 to-transparent pointer-events-none"
+          className="absolute inset-y-0 right-0 w-full md:w-3/5 bg-gradient-to-l from-[#171715]/95 via-[#171715]/60 to-transparent pointer-events-none"
           aria-hidden="true"
         />
 
@@ -360,9 +417,9 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
           </div>
         </div>
 
-        {/* NARRATIVE STAGE OVERLAYS (EXACT 4 STAGES IN UNIFIED GRID CELL) */}
+        {/* NARRATIVE STAGE OVERLAYS (EXACT 4 STAGES IN UNIFIED GRID CELL WITH DWELL LOCK) */}
         <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16 grid grid-cols-1 grid-rows-1 items-center pointer-events-none my-auto">
-          {/* ================= STAGE 1: INTRODUCTION (0 – 20%) Centered ================= */}
+          {/* ================= STAGE 1: INTRODUCTION (0 – 23%) Centered ================= */}
           <motion.div
             style={{
               opacity: stage1Opacity,
@@ -401,7 +458,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             </div>
           </motion.div>
 
-          {/* ================= STAGE 2: LIVING SPACES (20 – 45%) Left side ================= */}
+          {/* ================= STAGE 2: LIVING SPACES (23 – 57%) Left side - STUCK ON THE ART OF LIVING ================= */}
           <motion.div
             style={{
               opacity: stage2Opacity,
@@ -410,9 +467,12 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full max-w-xl text-left pointer-events-auto mr-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] block mb-3 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
-              01 / THE ART OF LIVING
-            </span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#E5C384]/35 mb-4 shadow-lg">
+              <span className="w-2 h-2 rounded-full bg-[#E5C384] animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#E5C384] font-medium">
+                01 / THE ART OF LIVING
+              </span>
+            </div>
 
             <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FFFFFF] leading-[1.08] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
               A feeling called home<span className="text-[#E5C384]">.</span>
@@ -421,9 +481,22 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             <p className="mt-5 text-base sm:text-lg text-[#FAF8F4] font-light leading-relaxed [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               Thoughtful layouts, tactile materials and considered details come together to create spaces that feel unmistakably yours.
             </p>
+
+            {/* Architectural Discipline Tags */}
+            <div className="mt-6 flex flex-wrap items-center gap-2.5">
+              <span className="px-3.5 py-1.5 rounded-full bg-black/50 border border-white/15 text-[11px] font-mono tracking-wider text-[#FAF8F4]/85 backdrop-blur-sm">
+                SPATIAL PROPORTION
+              </span>
+              <span className="px-3.5 py-1.5 rounded-full bg-black/50 border border-white/15 text-[11px] font-mono tracking-wider text-[#FAF8F4]/85 backdrop-blur-sm">
+                NATURAL ILLUMINATION
+              </span>
+              <span className="px-3.5 py-1.5 rounded-full bg-black/50 border border-white/15 text-[11px] font-mono tracking-wider text-[#FAF8F4]/85 backdrop-blur-sm">
+                CHENNAI SANCTUARY
+              </span>
+            </div>
           </motion.div>
 
-          {/* ================= STAGE 3: MATERIAL & DETAILS (45 – 75%) Right side ================= */}
+          {/* ================= STAGE 3: MATERIAL & DETAILS (57 – 89%) Right side - STUCK ON MATERIALS & DETAIL ================= */}
           <motion.div
             style={{
               opacity: stage3Opacity,
@@ -432,9 +505,12 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full max-w-xl ml-auto text-left md:text-right pointer-events-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] block mb-3 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
-              02 / MATERIALS &amp; DETAIL
-            </span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#E5C384]/35 mb-4 shadow-lg md:ml-auto">
+              <span className="w-2 h-2 rounded-full bg-[#E5C384] animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#E5C384] font-medium">
+                02 / MATERIALS &amp; DETAIL
+              </span>
+            </div>
 
             <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FFFFFF] leading-[1.08] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
               Every detail matters<span className="text-[#E5C384]">.</span>
@@ -443,9 +519,22 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             <p className="mt-5 text-base sm:text-lg text-[#FAF8F4] font-light leading-relaxed [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               From warm timber and refined finishes to light, texture and proportion, every element has a purpose.
             </p>
+
+            {/* Architectural Discipline Tags */}
+            <div className="mt-6 flex flex-wrap items-center gap-2.5 md:justify-end">
+              <span className="px-3.5 py-1.5 rounded-full bg-black/50 border border-white/15 text-[11px] font-mono tracking-wider text-[#FAF8F4]/85 backdrop-blur-sm">
+                SEASONED TEAK
+              </span>
+              <span className="px-3.5 py-1.5 rounded-full bg-black/50 border border-white/15 text-[11px] font-mono tracking-wider text-[#FAF8F4]/85 backdrop-blur-sm">
+                ROMAN TRAVERTINE
+              </span>
+              <span className="px-3.5 py-1.5 rounded-full bg-black/50 border border-white/15 text-[11px] font-mono tracking-wider text-[#FAF8F4]/85 backdrop-blur-sm">
+                FLUTED GLASS &amp; BRONZE
+              </span>
+            </div>
           </motion.div>
 
-          {/* ================= STAGE 4: FINAL CINEMATIC FRAME (75 – 100%) Centered ================= */}
+          {/* ================= STAGE 4: FINAL CINEMATIC FRAME (89 – 100%) Centered ================= */}
           <motion.div
             style={{
               opacity: stage4Opacity,

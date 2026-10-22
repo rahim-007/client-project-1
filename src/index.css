@@ -101,7 +101,7 @@ body {
   border-color: rgba(243, 239, 231, 0.15);
 }
 
-/* Film Grain Canvas Texture */
+/* Film Grain Canvas Texture - GPU-promoted to eliminate scroll raster lag */
 .grain-overlay {
   position: fixed;
   top: 0;
@@ -112,6 +112,9 @@ body {
   z-index: 9999;
   opacity: 0.032;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  transform: translateZ(0);
+  will-change: transform;
+  contain: strict;
 }
 
 /* Double-bezel outer shell styling */
