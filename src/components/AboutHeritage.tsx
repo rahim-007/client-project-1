@@ -33,11 +33,11 @@ export function AboutHeritage() {
         {/* Section Intro */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20 border-b border-white/10 pb-16">
           <div className="lg:col-span-5">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#9C805B] block mb-3">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#E5C384] font-medium block mb-3">
               ATELIER HERITAGE
             </span>
             <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-[#FAF8F4] leading-[1.08]">
-              Established in Chennai, 2015<span className="text-[#9C805B]">.</span>
+              Established in Chennai, 2015<span className="text-[#E5C384]">.</span>
             </h2>
             <div className="mt-6 flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-[#B7AA97]">
               <CalendarBlank size={16} />
@@ -45,7 +45,7 @@ export function AboutHeritage() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-[#FAF8F4]/80 font-light leading-relaxed">
+          <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-[#FAF8F4]/90 font-light leading-relaxed">
             <p>
               Founded in 2015 in Perungudi, Chennai, <strong className="text-[#FAF8F4] font-medium">S.M.S DECORS</strong> emerged from a clear architectural conviction: interior architecture should prioritize craftsmanship, authentic materiality, and practical execution over ephemeral trends.
             </p>
@@ -62,21 +62,21 @@ export function AboutHeritage() {
             return (
               <div
                 key={pillar.title}
-                className="p-8 border border-white/10 bg-white/[0.02] flex flex-col justify-between transition-all duration-300 hover:border-[#9C805B]/60 hover:bg-white/[0.04]"
+                className="p-8 border border-white/10 bg-white/[0.02] flex flex-col justify-between transition-all duration-300 hover:border-[#E5C384]/60 hover:bg-white/[0.04]"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-full bg-[#9C805B]/15 text-[#9C805B] flex items-center justify-center mb-6">
+                  <div className="w-12 h-12 rounded-full bg-[#E5C384]/15 text-[#E5C384] flex items-center justify-center mb-6">
                     <Icon size={22} weight="light" />
                   </div>
                   <h3 className="font-serif text-2xl font-light text-[#FAF8F4] mb-3">
                     {pillar.title}
                   </h3>
-                  <p className="text-sm text-[#FAF8F4]/75 font-light leading-relaxed">
+                  <p className="text-sm text-[#FAF8F4]/90 font-light leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-[#9C805B] uppercase">
+                <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-[#E5C384] uppercase">
                   <span>FOUNDATIONAL PILLAR</span>
                   <span>CHENNAI</span>
                 </div>

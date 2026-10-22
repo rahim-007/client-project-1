@@ -74,15 +74,15 @@ export function FeaturedProjects() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 sm:pb-16 border-b border-[#B7AA97]/30">
           <div>
-            <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#9C805B] block mb-3">
+            <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#7F6847] font-medium block mb-3">
               SELECTED WORK
             </span>
             <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#171715] leading-[1.08]">
-              Spaces with a point of view<span className="text-[#9C805B]">.</span>
+              Spaces with a point of view<span className="text-[#7F6847]">.</span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm sm:text-base text-[#171715]/75 font-light leading-relaxed">
+          <p className="max-w-md text-sm sm:text-base text-[#171715]/90 font-light leading-relaxed">
             Curated architectural studies drawn directly from our studio archive. Each space balances proportions, honest materiality, and spatial clarity.
           </p>
         </div>
@@ -115,7 +115,7 @@ export function FeaturedProjects() {
 
             <div className="mt-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#9C805B]">
+                <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#7F6847] font-medium">
                   {FEATURED_PROJECTS[0].category}
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-light text-[#171715] mt-1 group-hover:text-[#9C805B] transition-colors">
@@ -153,7 +153,7 @@ export function FeaturedProjects() {
             </div>
 
             <div className="mt-6">
-              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#9C805B]">
+              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#7F6847] font-medium">
                 {FEATURED_PROJECTS[1].category}
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl font-light text-[#171715] mt-1 group-hover:text-[#9C805B] transition-colors">
@@ -190,7 +190,7 @@ export function FeaturedProjects() {
             </div>
 
             <div className="mt-6">
-              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#9C805B]">
+              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#7F6847] font-medium">
                 {FEATURED_PROJECTS[2].category}
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl font-light text-[#171715] mt-1 group-hover:text-[#9C805B] transition-colors">
@@ -228,7 +228,7 @@ export function FeaturedProjects() {
 
             <div className="mt-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#9C805B]">
+                <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#7F6847] font-medium">
                   {FEATURED_PROJECTS[3].category}
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-light text-[#171715] mt-1 group-hover:text-[#9C805B] transition-colors">

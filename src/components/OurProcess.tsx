@@ -49,13 +49,13 @@ export function OurProcess() {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 sm:mb-24">
-          <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#9C805B] block mb-3">
+          <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#7F6847] font-medium block mb-3">
             METHODOLOGY
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#171715] leading-[1.08]">
-            A deliberate journey from brief to sanctuary<span className="text-[#9C805B]">.</span>
+            A deliberate journey from brief to sanctuary<span className="text-[#7F6847]">.</span>
           </h2>
-          <p className="mt-5 text-base sm:text-lg text-[#171715]/75 font-light leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-[#171715]/90 font-light leading-relaxed">
             Our engagement proceeds through four disciplined stages, ensuring clarity, accountability, and seamless execution.
           </p>
         </div>
@@ -80,26 +80,26 @@ export function OurProcess() {
               <div>
                 {/* Step indicator node */}
                 <div className="flex items-baseline justify-between mb-6">
-                  <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#9C805B] font-semibold">
+                  <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#7F6847] font-semibold">
                     {step.number}
                   </span>
-                  <span className="w-2 h-2 rounded-full bg-[#9C805B]" />
+                  <span className="w-2 h-2 rounded-full bg-[#7F6847]" />
                 </div>
 
                 <h3 className="font-serif text-3xl sm:text-4xl font-light text-[#171715] mb-4">
                   {step.title}
                 </h3>
 
-                <p className="text-sm sm:text-base text-[#171715]/75 font-light leading-relaxed">
+                <p className="text-sm sm:text-base text-[#171715]/90 font-light leading-relaxed">
                   {step.description}
                 </p>
               </div>
 
               <div className="mt-8 pt-4 border-t border-[#B7AA97]/20">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#9C805B]">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#7F6847] font-medium">
                   KEY FOCUS
                 </span>
-                <p className="text-xs text-[#171715]/80 font-light mt-1">
+                <p className="text-xs text-[#171715]/90 font-light mt-1">
                   {step.focus}
                 </p>
               </div>

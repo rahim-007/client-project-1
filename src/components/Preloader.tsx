@@ -9,6 +9,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [progress, setProgress] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const [isGone, setIsGone] = useState(false);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -23,7 +24,8 @@ export function Preloader({ onComplete }: PreloaderProps) {
           setIsFadingOut(true);
           setTimeout(() => {
             onComplete();
-          }, 500);
+            setIsGone(true);
+          }, 700);
           return 100;
         }
         const increment = Math.floor(Math.random() * 20) + 12;
@@ -34,7 +36,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
     return () => clearInterval(interval);
   }, [prefersReducedMotion, onComplete]);
 
-  if (prefersReducedMotion) return null;
+  if (prefersReducedMotion || isGone) return null;
 
   return (
     <div

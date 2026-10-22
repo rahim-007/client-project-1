@@ -43,7 +43,11 @@ export function App() {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      if (window.__lenisInstance) {
+        window.__lenisInstance.scrollTo(el, { offset: 0, duration: 1.2 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

@@ -107,13 +107,13 @@ export function PinnedStorytelling() {
         {/* Section Intro */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 border-b border-white/10 pb-8">
           <div className="max-w-2xl">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#9C805B] block mb-3">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#E5C384] block mb-3">
               CRAFT ARCHIVE · DISCIPLINE 0{activeStepIndex + 1} OF 04
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-[#FAF8F4] leading-[1.08]">
-              The Anatomy of Enduring Architecture<span className="text-[#9C805B]">.</span>
+              The Anatomy of Enduring Architecture<span className="text-[#E5C384]">.</span>
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#FAF8F4]/75 font-light leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-[#FAF8F4]/90 font-light leading-relaxed">
               Witness how tactile honesty, spatial mathematics, and relentless on-site supervision merge into spaces
               that speak quietly of permanence.
             </p>
@@ -157,7 +157,7 @@ export function PinnedStorytelling() {
                     : 'bg-white/5 hover:bg-white/15 text-[#FAF8F4]/70 border border-white/10'
                 }`}
               >
-                <span className={isCurrent ? 'text-[#9C805B]' : 'text-white/40'}>{step.number}</span>
+                <span className={isCurrent ? 'text-[#E5C384]' : 'text-white/40'}>{step.number}</span>
                 <span>{step.tag}</span>
               </button>
             );
@@ -188,7 +188,7 @@ export function PinnedStorytelling() {
 
                   {/* Top Architectural Badge */}
                   <div className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-[#171715]/80 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-widest text-[#B7AA97] uppercase">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9C805B] animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E5C384] animate-pulse" />
                     <span>{activeStep.tag}</span>
                   </div>
 
@@ -228,7 +228,7 @@ export function PinnedStorytelling() {
                     key={s.id}
                     onClick={() => setActiveStepIndex(idx)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      activeStepIndex === idx ? 'w-8 bg-[#9C805B]' : 'w-2 bg-white/20 hover:bg-white/40'
+                      activeStepIndex === idx ? 'w-8 bg-[#E5C384]' : 'w-2 bg-white/20 hover:bg-white/40'
                     }`}
                     aria-label={`Go to step ${idx + 1}`}
                   />
@@ -254,10 +254,10 @@ export function PinnedStorytelling() {
                 {/* Discipline Header */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#9C805B]/15 text-[#9C805B] flex items-center justify-center border border-[#9C805B]/20">
+                    <div className="w-9 h-9 rounded-full bg-[#E5C384]/15 text-[#E5C384] flex items-center justify-center border border-[#E5C384]/20">
                       <ActiveIcon size={18} weight="light" />
                     </div>
-                    <span className="text-xs font-mono tracking-widest text-[#9C805B] uppercase">
+                    <span className="text-xs font-mono tracking-widest text-[#E5C384] uppercase">
                       {activeStep.tag}
                     </span>
                   </div>
@@ -271,7 +271,7 @@ export function PinnedStorytelling() {
                   <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-[#FAF8F4] leading-snug">
                     {activeStep.title}
                   </h3>
-                  <p className="mt-4 text-sm sm:text-base text-[#FAF8F4]/80 font-light leading-relaxed">
+                  <p className="mt-4 text-sm sm:text-base text-[#FAF8F4]/90 font-light leading-relaxed">
                     {activeStep.narrative}
                   </p>
                 </div>
@@ -317,7 +317,7 @@ export function PinnedStorytelling() {
 
               <button
                 onClick={handleNext}
-                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#9C805B] hover:text-[#FAF8F4] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#E5C384] hover:text-[#FAF8F4] transition-colors"
               >
                 <span>NEXT DISCIPLINE</span>
                 <ArrowRight size={13} />

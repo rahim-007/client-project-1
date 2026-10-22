@@ -123,13 +123,13 @@ export function ContactSection({ initialService }: ContactSectionProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 sm:mb-20">
-          <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#9C805B] block mb-3">
+          <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#E5C384] block mb-3">
             LET&apos;S BEGIN
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FAF8F4] leading-[1.06]">
-            Tell us what you&apos;re imagining<span className="text-[#9C805B]">.</span>
+            Tell us what you&apos;re imagining<span className="text-[#E5C384]">.</span>
           </h2>
-          <p className="mt-5 text-base sm:text-xl text-[#FAF8F4]/80 font-light leading-relaxed">
+          <p className="mt-5 text-base sm:text-xl text-[#FAF8F4]/90 font-light leading-relaxed">
             Have a home, apartment, or space in mind? We&apos;d love to hear about it.
           </p>
         </div>
@@ -139,13 +139,13 @@ export function ContactSection({ initialService }: ContactSectionProps) {
           {/* Left Column: Verified Atelier Contact Details */}
           <div className="lg:col-span-5 space-y-8">
             <div className="p-8 border border-white/10 bg-white/[0.02] space-y-8">
-              <span className="block text-xs font-mono uppercase tracking-[0.25em] text-[#9C805B]">
+              <span className="block text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384]">
                 DIRECT STUDIO DETAILS
               </span>
 
               {/* Telephone */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#9C805B]/15 text-[#9C805B] flex items-center justify-center shrink-0 mt-1">
+                <div className="w-10 h-10 rounded-full bg-[#E5C384]/15 text-[#E5C384] flex items-center justify-center shrink-0 mt-1">
                   <Phone size={18} weight="bold" />
                 </div>
                 <div>
@@ -154,7 +154,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                   </span>
                   <a
                     href="tel:+919841213025"
-                    className="text-lg sm:text-xl font-serif text-[#FAF8F4] hover:text-[#9C805B] transition-colors"
+                    className="text-lg sm:text-xl font-serif text-[#FAF8F4] hover:text-[#E5C384] transition-colors"
                   >
                     +91 98412 13025
                   </a>
@@ -166,7 +166,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
 
               {/* Email */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#9C805B]/15 text-[#9C805B] flex items-center justify-center shrink-0 mt-1">
+                <div className="w-10 h-10 rounded-full bg-[#E5C384]/15 text-[#E5C384] flex items-center justify-center shrink-0 mt-1">
                   <EnvelopeSimple size={18} weight="bold" />
                 </div>
                 <div>
@@ -175,7 +175,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                   </span>
                   <a
                     href="mailto:smsdecorskumaran@gmail.com"
-                    className="text-base sm:text-lg font-mono text-[#FAF8F4] hover:text-[#9C805B] transition-colors break-all"
+                    className="text-base sm:text-lg font-mono text-[#FAF8F4] hover:text-[#E5C384] transition-colors break-all"
                   >
                     smsdecorskumaran@gmail.com
                   </a>
@@ -187,7 +187,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
 
               {/* Atelier Address */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#9C805B]/15 text-[#9C805B] flex items-center justify-center shrink-0 mt-1">
+                <div className="w-10 h-10 rounded-full bg-[#E5C384]/15 text-[#E5C384] flex items-center justify-center shrink-0 mt-1">
                   <MapPin size={18} weight="bold" />
                 </div>
                 <div>
@@ -203,7 +203,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
 
             {/* Quiet Architectural Assurance */}
             <div className="p-6 border border-white/5 text-xs text-[#FAF8F4]/60 font-light space-y-2">
-              <span className="text-[#9C805B] font-mono uppercase tracking-widest block">
+              <span className="text-[#E5C384] font-mono uppercase tracking-widest block">
                 PRIVACY &amp; PROCESS
               </span>
               <p>
@@ -217,14 +217,14 @@ export function ContactSection({ initialService }: ContactSectionProps) {
             <div className="p-8 sm:p-10 border border-white/10 bg-white/[0.02]">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-6" role="status">
-                  <div className="w-16 h-16 rounded-full bg-[#9C805B]/20 text-[#9C805B] flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 rounded-full bg-[#E5C384]/20 text-[#E5C384] flex items-center justify-center mx-auto">
                     <CheckCircle size={32} weight="fill" />
                   </div>
                   <h3 className="font-serif text-3xl sm:text-4xl font-light text-[#FAF8F4]">
                     Thank You, {formData.fullName}.
                   </h3>
-                  <p className="text-base text-[#FAF8F4]/80 max-w-md mx-auto font-light leading-relaxed">
-                    Your inquiry for <strong className="text-[#FAF8F4]">{formData.projectType}</strong> has been prepared. Your email client has been opened with the complete brief addressed to <span className="font-mono text-sm text-[#9C805B]">smsdecorskumaran@gmail.com</span>.
+                  <p className="text-base text-[#FAF8F4]/90 max-w-md mx-auto font-light leading-relaxed">
+                    Your inquiry for <strong className="text-[#FAF8F4]">{formData.projectType}</strong> has been prepared. Your email client has been opened with the complete brief addressed to <span className="font-mono text-sm text-[#E5C384]">smsdecorskumaran@gmail.com</span>.
                   </p>
                   <div className="pt-4">
                     <button
@@ -241,7 +241,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="fullName" className="block text-xs font-mono uppercase tracking-widest text-[#B7AA97] mb-2">
-                        Full Name <span className="text-[#9C805B]">*</span>
+                        Full Name <span className="text-[#E5C384]">*</span>
                       </label>
                       <input
                         id="fullName"
@@ -251,7 +251,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                         value={formData.fullName}
                         onChange={handleChange}
                         placeholder="e.g. Radhika Sundaram"
-                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#9C805B] transition-colors placeholder:text-white/20 ${
+                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#E5C384] transition-colors placeholder:text-white/20 ${
                           errors.fullName ? 'border-red-400' : 'border-white/15'
                         }`}
                         aria-invalid={!!errors.fullName}
@@ -267,7 +267,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
 
                     <div>
                       <label htmlFor="email" className="block text-xs font-mono uppercase tracking-widest text-[#B7AA97] mb-2">
-                        Email Address <span className="text-[#9C805B]">*</span>
+                        Email Address <span className="text-[#E5C384]">*</span>
                       </label>
                       <input
                         id="email"
@@ -277,7 +277,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="e.g. radhika@example.com"
-                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#9C805B] transition-colors placeholder:text-white/20 ${
+                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#E5C384] transition-colors placeholder:text-white/20 ${
                           errors.email ? 'border-red-400' : 'border-white/15'
                         }`}
                         aria-invalid={!!errors.email}
@@ -296,7 +296,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-xs font-mono uppercase tracking-widest text-[#B7AA97] mb-2">
-                        Phone Number <span className="text-[#9C805B]">*</span>
+                        Phone Number <span className="text-[#E5C384]">*</span>
                       </label>
                       <input
                         id="phone"
@@ -306,7 +306,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+91 98412 13025"
-                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#9C805B] transition-colors placeholder:text-white/20 ${
+                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#E5C384] transition-colors placeholder:text-white/20 ${
                           errors.phone ? 'border-red-400' : 'border-white/15'
                         }`}
                         aria-invalid={!!errors.phone}
@@ -322,7 +322,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
 
                     <div>
                       <label htmlFor="location" className="block text-xs font-mono uppercase tracking-widest text-[#B7AA97] mb-2">
-                        Project Location <span className="text-[#9C805B]">*</span>
+                        Project Location <span className="text-[#E5C384]">*</span>
                       </label>
                       <input
                         id="location"
@@ -332,7 +332,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                         value={formData.location}
                         onChange={handleChange}
                         placeholder="e.g. Boat Club Road, Chennai"
-                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#9C805B] transition-colors placeholder:text-white/20 ${
+                        className={`w-full px-4 py-3 bg-white/[0.04] border text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#E5C384] transition-colors placeholder:text-white/20 ${
                           errors.location ? 'border-red-400' : 'border-white/15'
                         }`}
                         aria-invalid={!!errors.location}
@@ -358,7 +358,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-[#171715] border border-white/15 text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#9C805B] transition-colors"
+                        className="w-full px-4 py-3 bg-[#171715] border border-white/15 text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#E5C384] transition-colors"
                       >
                         <option value="Bespoke Residential Interior">Bespoke Residential Interior</option>
                         <option value="Contemporary Living Spaces">Contemporary Living Spaces</option>
@@ -380,7 +380,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                         value={formData.approximateBudget}
                         onChange={handleChange}
                         placeholder="e.g. ₹25L – ₹50L or Custom"
-                        className="w-full px-4 py-3 bg-white/[0.04] border border-white/15 text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#9C805B] transition-colors placeholder:text-white/20"
+                        className="w-full px-4 py-3 bg-white/[0.04] border border-white/15 text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#E5C384] transition-colors placeholder:text-white/20"
                       />
                     </div>
                   </div>
@@ -397,7 +397,7 @@ export function ContactSection({ initialService }: ContactSectionProps) {
                       value={formData.projectDescription}
                       onChange={handleChange}
                       placeholder="Tell us about the property, timeline, architectural preferences, or specific material aspirations..."
-                      className="w-full px-4 py-3 bg-white/[0.04] border border-white/15 text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#9C805B] transition-colors placeholder:text-white/20 resize-none"
+                      className="w-full px-4 py-3 bg-white/[0.04] border border-white/15 text-[#FAF8F4] text-sm font-light focus:outline-none focus:border-[#E5C384] transition-colors placeholder:text-white/20 resize-none"
                     />
                   </div>
 

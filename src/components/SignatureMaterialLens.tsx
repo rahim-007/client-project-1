@@ -99,17 +99,17 @@ export function SignatureMaterialLens() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Sparkle size={14} className="text-[#9C805B]" weight="fill" />
-              <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#9C805B]">
+              <Sparkle size={14} className="text-[#E5C384]" weight="fill" />
+              <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#E5C384]">
                 SIGNATURE TOOL · MATERIAL LENS
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-[#FAF8F4] leading-[1.08]">
-              Tactile Material Anatomy<span className="text-[#9C805B]">.</span>
+              Tactile Material Anatomy<span className="text-[#E5C384]">.</span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm text-[#FAF8F4]/75 font-light leading-relaxed">
+          <p className="max-w-md text-sm text-[#FAF8F4]/90 font-light leading-relaxed">
             Select an architectural datum below to inspect exact material specifications, sound dampening indices, and finish provenance.
           </p>
         </div>
@@ -163,13 +163,13 @@ export function SignatureMaterialLens() {
                     <span
                       className={`relative flex h-7 w-7 items-center justify-center rounded-full transition-colors ${
                         isSelected
-                          ? 'bg-[#9C805B] text-[#171715]'
-                          : 'bg-[#171715]/80 text-[#FAF8F4] border border-white/30 hover:border-[#9C805B]'
+                          ? 'bg-[#E5C384] text-[#171715]'
+                          : 'bg-[#171715]/80 text-[#FAF8F4] border border-white/30 hover:border-[#E5C384]'
                       }`}
                     >
                       <Crosshair size={14} weight="bold" />
                       {isSelected && (
-                        <span className="absolute -inset-1 rounded-full border border-[#9C805B] animate-ping opacity-75" />
+                        <span className="absolute -inset-1 rounded-full border border-[#E5C384] animate-ping opacity-75" />
                       )}
                     </span>
                   </button>
@@ -182,8 +182,8 @@ export function SignatureMaterialLens() {
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                 className="absolute pointer-events-none -translate-x-1/2 -translate-y-1/2 z-25"
               >
-                <div className="w-16 h-16 rounded-full border border-[#9C805B]/60 flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-[#9C805B]" />
+                <div className="w-16 h-16 rounded-full border border-[#E5C384]/60 flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-[#E5C384]" />
                 </div>
               </motion.div>
             </div>
@@ -193,7 +193,7 @@ export function SignatureMaterialLens() {
           <div className="lg:col-span-4 space-y-6">
             <div className="p-8 border border-white/15 bg-white/[0.03] space-y-6 backdrop-blur-sm">
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-[#9C805B] block mb-2">
+                <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-[#E5C384] block mb-2">
                   {activePin.tag}
                 </span>
                 <h3 className="font-serif text-3xl font-light text-[#FAF8F4]">
@@ -238,7 +238,7 @@ export function SignatureMaterialLens() {
                     onClick={() => selectPin(pin)}
                     className={`px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider transition-colors border ${
                       activePin.id === pin.id
-                        ? 'bg-[#9C805B] text-[#171715] border-[#9C805B] font-semibold'
+                        ? 'bg-[#E5C384] text-[#171715] border-[#E5C384] font-semibold'
                         : 'border-white/15 text-[#FAF8F4]/70 hover:border-white/40'
                     }`}
                   >

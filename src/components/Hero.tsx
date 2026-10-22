@@ -68,9 +68,6 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-
     const cw = canvas.width;
     const ch = canvas.height;
     const iw = img.naturalWidth || 1280;
@@ -85,7 +82,6 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     const nx = (cw - nw) / 2;
     const ny = (ch - nh) / 2;
 
-    ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, nx, ny, nw, nh);
   }, []);
 
@@ -100,6 +96,12 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     canvas.width = Math.round(rect.width * dpr);
     canvas.height = Math.round(rect.height * dpr);
 
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'medium';
+    }
+
     const activeIndex = Math.max(0, lastDrawnFrameRef.current);
     const img = imagesRef.current[activeIndex] || imagesRef.current[0];
     if (img && img.complete && img.naturalWidth > 0) {
@@ -107,61 +109,63 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     }
   }, [drawFrame]);
 
-  // Fast Milestone-First Preloader: loads key frames immediately, then streams rest
+  // High-Performance Interleaved Preloader: loads skeleton instantly with async off-thread decoding
   useEffect(() => {
     const images: HTMLImageElement[] = new Array(TOTAL_FRAMES);
     imagesRef.current = images;
 
-    // Priority 1: Key architectural milestones loaded immediately
-    const keyframes = [0, 59, 119, 179, 239];
-    keyframes.forEach((idx) => {
+    const loadSingleFrame = (idx: number, onLoaded?: () => void) => {
+      if (images[idx]) return images[idx];
       const img = new Image();
+      img.decoding = 'async';
       const frameNum = String(idx + 1).padStart(4, '0');
       img.src = `/frames/frame-${frameNum}.jpg`;
       img.onload = () => {
-        if (idx === 0) {
-          setInitialFrameLoaded(true);
-          handleResize();
-          drawFrame(img);
-          lastDrawnFrameRef.current = 0;
-        }
-        // If playhead is currently close to this keyframe, draw immediately
-        if (Math.abs(targetFrameRef.current - idx) <= 15) {
+        if (onLoaded) onLoaded();
+        if (Math.abs(targetFrameRef.current - idx) <= 2) {
           drawFrame(img);
           lastDrawnFrameRef.current = idx;
         }
       };
       images[idx] = img;
-    });
-
-    // Priority 2: Concurrent batch loading of all remaining frames
-    let loadedIdx = 1;
-    const loadBatch = () => {
-      const batchLimit = Math.min(loadedIdx + 30, TOTAL_FRAMES);
-      for (let i = loadedIdx; i < batchLimit; i++) {
-        if (images[i]) continue;
-        const img = new Image();
-        const frameNum = String(i + 1).padStart(4, '0');
-        img.src = `/frames/frame-${frameNum}.jpg`;
-        img.onload = () => {
-          // If the playhead is currently waiting for or near this frame, refresh canvas
-          if (Math.abs(targetFrameRef.current - i) <= 2) {
-            drawFrame(img);
-            lastDrawnFrameRef.current = i;
-          }
-        };
-        images[i] = img;
-      }
-      loadedIdx = batchLimit;
-      if (loadedIdx < TOTAL_FRAMES) {
-        setTimeout(loadBatch, 15);
-      }
+      return img;
     };
 
-    setTimeout(loadBatch, 30);
+    // Priority 1: Keyframe 0 loads immediately for instant first paint
+    loadSingleFrame(0, () => {
+      setInitialFrameLoaded(true);
+      handleResize();
+      if (images[0]) {
+        drawFrame(images[0]);
+        lastDrawnFrameRef.current = 0;
+      }
+    });
+
+    // Priority 2: Skeleton sweep across the entire sequence (every 4th frame: 0, 4, 8... 239)
+    // Within ~100ms, the entire timeline has loaded anchors so no frame drop ever occurs
+    for (let i = 0; i < TOTAL_FRAMES; i += 4) {
+      loadSingleFrame(i);
+    }
+    loadSingleFrame(TOTAL_FRAMES - 1);
+
+    // Priority 3: Interleaved sweep (every 2nd frame)
+    const timer1 = setTimeout(() => {
+      for (let i = 2; i < TOTAL_FRAMES; i += 4) {
+        loadSingleFrame(i);
+      }
+    }, 40);
+
+    // Priority 4: Full continuous density (all remaining odd frames)
+    const timer2 = setTimeout(() => {
+      for (let i = 1; i < TOTAL_FRAMES; i += 2) {
+        loadSingleFrame(i);
+      }
+    }, 120);
 
     window.addEventListener('resize', handleResize);
     return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
       window.removeEventListener('resize', handleResize);
     };
   }, [drawFrame, handleResize]);
@@ -187,8 +191,8 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       if (!isRunning) return;
 
       const diff = targetProgressRef.current - currentProgressRef.current;
-      if (Math.abs(diff) > 0.00005) {
-        currentProgressRef.current += diff * 0.20;
+      if (Math.abs(diff) > 0.00002) {
+        currentProgressRef.current += diff * 0.28;
       } else {
         currentProgressRef.current = targetProgressRef.current;
       }
@@ -204,7 +208,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
 
       // Update frame counter directly in DOM without triggering React re-renders
       if (frameCounterRef.current) {
-        frameCounterRef.current.textContent = String(frameIndex + 1).padStart(3, '0');
+        frameCounterRef.current.textContent = `FRAME ${String(frameIndex + 1).padStart(3, '0')} / 240`;
       }
 
       // Search for the closest available loaded frame if target is still buffering
@@ -212,12 +216,24 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       let actualDrawnIndex = frameIndex;
 
       if (!imgToRender || !imgToRender.complete || imgToRender.naturalWidth === 0) {
+        // Search backwards first
         for (let j = frameIndex - 1; j >= 0; j--) {
           const candidate = imagesRef.current[j];
           if (candidate && candidate.complete && candidate.naturalWidth > 0) {
             imgToRender = candidate;
             actualDrawnIndex = j;
             break;
+          }
+        }
+        // If not found backwards, search forwards
+        if (!imgToRender) {
+          for (let j = frameIndex + 1; j < TOTAL_FRAMES; j++) {
+            const candidate = imagesRef.current[j];
+            if (candidate && candidate.complete && candidate.naturalWidth > 0) {
+              imgToRender = candidate;
+              actualDrawnIndex = j;
+              break;
+            }
           }
         }
       }
@@ -289,7 +305,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       id="hero"
       ref={containerRef}
       data-sc-act="scrub"
-      className="relative w-full h-[200vh] bg-[#171715] text-[#FAF8F4]"
+      className="relative w-full h-[250vh] bg-[#171715] text-[#FAF8F4]"
       aria-label="Cinematic Architectural Sequence"
     >
       {/* Pinned Viewport Canvas Stage (100dvh) */}
@@ -311,36 +327,36 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
 
         {/* Subtle Ambient Vignettes */}
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[#171715]/85 via-transparent to-[#171715]/45 pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-t from-[#171715]/90 via-[#171715]/40 to-[#171715]/55 pointer-events-none"
           aria-hidden="true"
         />
 
         {/* Dynamic localized scrims behind Stage 2 (Left) and Stage 3 (Right) */}
         <motion.div
           style={{ opacity: leftScrimOpacity }}
-          className="absolute inset-y-0 left-0 w-full md:w-3/5 bg-gradient-to-r from-[#171715]/85 via-[#171715]/40 to-transparent pointer-events-none"
+          className="absolute inset-y-0 left-0 w-full md:w-3/5 bg-gradient-to-r from-[#171715]/90 via-[#171715]/50 to-transparent pointer-events-none"
           aria-hidden="true"
         />
         <motion.div
           style={{ opacity: rightScrimOpacity }}
-          className="absolute inset-y-0 right-0 w-full md:w-3/5 bg-gradient-to-l from-[#171715]/85 via-[#171715]/40 to-transparent pointer-events-none"
+          className="absolute inset-y-0 right-0 w-full md:w-3/5 bg-gradient-to-l from-[#171715]/90 via-[#171715]/50 to-transparent pointer-events-none"
           aria-hidden="true"
         />
 
         {/* TOP STATUS BAR HUD */}
-        <div className="relative z-20 pt-20 sm:pt-24 px-6 sm:px-12 md:px-16 flex items-center justify-between text-[11px] font-mono tracking-widest uppercase text-[#FAF8F4]/70 pointer-events-auto">
+        <div className="relative z-20 pt-20 sm:pt-24 px-6 sm:px-12 md:px-16 flex items-center justify-between text-[11px] font-mono tracking-widest uppercase text-[#FAF8F4] pointer-events-auto [text-shadow:_0_1px_6px_rgba(0,0,0,0.85)]">
           <div className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-[#9C805B] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#E5C384] animate-pulse" />
             <span className="text-[#FAF8F4] font-medium tracking-wider">S.M.S DECORS · ARCHITECTURAL WALKTHROUGH</span>
           </div>
 
           <div className="hidden sm:flex items-center gap-3">
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-[#B7AA97]">
-              <Compass size={12} className="text-[#9C805B]" weight="bold" />
-              <span>FRAME <span ref={frameCounterRef}>001</span> / 240</span>
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/15 text-[10px] text-[#E5C384] backdrop-blur-sm">
+              <Compass size={12} className="text-[#E5C384]" weight="bold" />
+              <span ref={frameCounterRef}>FRAME 001 / 240</span>
             </div>
             <span className="text-white/40">|</span>
-            <span className="text-[#B7AA97]">CHENNAI ATELIER</span>
+            <span className="text-[#FAF8F4]/90">CHENNAI ATELIER</span>
           </div>
         </div>
 
@@ -355,15 +371,15 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full text-center max-w-3xl mx-auto flex flex-col items-center pointer-events-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#B7AA97] mb-4">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] mb-4 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               CRAFTED FOR THE WAY YOU LIVE
             </span>
 
-            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-light tracking-tight text-[#FAF8F4] leading-[1.04]">
-              Spaces that speak<span className="text-[#9C805B]">.</span>
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-light tracking-tight text-[#FFFFFF] leading-[1.04] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+              Spaces that speak<span className="text-[#E5C384]">.</span>
             </h1>
 
-            <p className="mt-5 text-base sm:text-xl text-[#FAF8F4]/85 font-light leading-relaxed max-w-xl">
+            <p className="mt-5 text-base sm:text-xl text-[#FAF8F4] font-light leading-relaxed max-w-xl [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               Interiors shaped around your life, your taste, your vision.
             </p>
 
@@ -378,7 +394,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
 
               <button
                 onClick={onDiscussProject}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[#FAF8F4] text-xs font-medium tracking-[0.18em] uppercase transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#171715]/60 hover:bg-[#171715]/80 border border-white/30 text-[#FAF8F4] text-xs font-medium tracking-[0.18em] uppercase backdrop-blur-sm transition-all shadow-lg active:scale-[0.98]"
               >
                 <span>START YOUR PROJECT</span>
               </button>
@@ -394,15 +410,15 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full max-w-xl text-left pointer-events-auto mr-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#9C805B] block mb-3">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] block mb-3 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               01 / THE ART OF LIVING
             </span>
 
-            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FAF8F4] leading-[1.08]">
-              A feeling called home<span className="text-[#9C805B]">.</span>
+            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FFFFFF] leading-[1.08] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+              A feeling called home<span className="text-[#E5C384]">.</span>
             </h2>
 
-            <p className="mt-5 text-base sm:text-lg text-[#FAF8F4]/85 font-light leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-[#FAF8F4] font-light leading-relaxed [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               Thoughtful layouts, tactile materials and considered details come together to create spaces that feel unmistakably yours.
             </p>
           </motion.div>
@@ -416,15 +432,15 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full max-w-xl ml-auto text-left md:text-right pointer-events-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#9C805B] block mb-3">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] block mb-3 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               02 / MATERIALS &amp; DETAIL
             </span>
 
-            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FAF8F4] leading-[1.08]">
-              Every detail matters<span className="text-[#9C805B]">.</span>
+            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FFFFFF] leading-[1.08] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+              Every detail matters<span className="text-[#E5C384]">.</span>
             </h2>
 
-            <p className="mt-5 text-base sm:text-lg text-[#FAF8F4]/85 font-light leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-[#FAF8F4] font-light leading-relaxed [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               From warm timber and refined finishes to light, texture and proportion, every element has a purpose.
             </p>
           </motion.div>
@@ -438,15 +454,15 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full text-center max-w-3xl mx-auto flex flex-col items-center pointer-events-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#B7AA97] mb-4">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] mb-4 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               S.M.S DECORS · CHENNAI
             </span>
 
-            <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light tracking-tight text-[#FAF8F4] leading-[1.04]">
-              Your vision. Our craft<span className="text-[#9C805B]">.</span>
+            <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light tracking-tight text-[#FFFFFF] leading-[1.04] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+              Your vision. Our craft<span className="text-[#E5C384]">.</span>
             </h2>
 
-            <p className="mt-5 text-base sm:text-xl text-[#FAF8F4]/85 font-light leading-relaxed max-w-xl">
+            <p className="mt-5 text-base sm:text-xl text-[#FAF8F4] font-light leading-relaxed max-w-xl [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               Let&apos;s create a space worth coming home to.
             </p>
 

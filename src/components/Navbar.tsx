@@ -73,12 +73,14 @@ export function Navbar({ onOpenContact }: NavbarProps) {
           className="group flex flex-col focus:outline-none focus-visible:ring-1 focus-visible:ring-[#9C805B]"
           aria-label="S.M.S DECORS Homepage"
         >
-          <span className="font-serif text-xl sm:text-2xl font-light tracking-[0.22em] uppercase leading-none">
+          <span className={`font-serif text-xl sm:text-2xl font-light tracking-[0.22em] uppercase leading-none ${
+            isScrolledPastHero ? '' : '[text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]'
+          }`}>
             S.M.S DECORS
           </span>
           <span
             className={`text-[9px] font-mono tracking-[0.3em] uppercase mt-1 transition-colors ${
-              isScrolledPastHero ? 'text-[#9C805B]' : 'text-[#FAF8F4]/60'
+              isScrolledPastHero ? 'text-[#7F6847]' : 'text-[#E5C384] [text-shadow:_0_1px_4px_rgba(0,0,0,0.85)]'
             }`}
           >
             CHENNAI · EST. 2015
@@ -95,10 +97,10 @@ export function Navbar({ onOpenContact }: NavbarProps) {
                 e.preventDefault();
                 handleNavClick(item.href);
               }}
-              className={`text-xs uppercase tracking-[0.18em] transition-colors relative py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#9C805B] ${
+              className={`text-xs uppercase tracking-[0.18em] transition-colors relative py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#7F6847] ${
                 isScrolledPastHero
-                  ? 'text-[#171715]/75 hover:text-[#9C805B]'
-                  : 'text-[#FAF8F4]/80 hover:text-[#FAF8F4]'
+                  ? 'text-[#171715]/85 hover:text-[#7F6847]'
+                  : 'text-[#FAF8F4] [text-shadow:_0_1px_6px_rgba(0,0,0,0.85)] hover:text-[#E5C384]'
               }`}
             >
               {item.label}
@@ -109,8 +111,8 @@ export function Navbar({ onOpenContact }: NavbarProps) {
             onClick={onOpenContact}
             className={`ml-4 inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs uppercase tracking-[0.18em] font-medium transition-all duration-300 active:scale-[0.98] ${
               isScrolledPastHero
-                ? 'bg-[#171715] text-[#FAF8F4] hover:bg-[#9C805B]'
-                : 'bg-[#FAF8F4] text-[#171715] hover:bg-white'
+                ? 'bg-[#171715] text-[#FAF8F4] hover:bg-[#7F6847]'
+                : 'bg-[#FAF8F4] text-[#171715] hover:bg-white shadow-lg'
             }`}
           >
             <span>Inquire</span>

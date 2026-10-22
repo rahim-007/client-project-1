@@ -18,12 +18,12 @@ export function DesignPhilosophy() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 space-y-6"
           >
-            <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#9C805B] block">
+            <span className="text-xs uppercase tracking-[0.25em] font-mono text-[#7F6847] block">
               OUR APPROACH
             </span>
 
             <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#171715] leading-[1.06]">
-              Good design is felt before it is noticed<span className="text-[#9C805B]">.</span>
+              Good design is felt before it is noticed<span className="text-[#7F6847]">.</span>
             </h2>
 
             {/* Restrained animated line */}
@@ -32,7 +32,7 @@ export function DesignPhilosophy() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="origin-left h-[1px] w-24 bg-[#9C805B] mt-8"
+              className="origin-left h-[1px] w-24 bg-[#7F6847] mt-8"
             />
           </motion.div>
 
@@ -48,7 +48,7 @@ export function DesignPhilosophy() {
               We believe a home should feel effortless. True luxury is not an accumulation of ornament, but an orchestration of space, quiet, and daylight.
             </p>
 
-            <div className="space-y-6 text-base sm:text-lg text-[#171715]/75 font-light leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg text-[#171715]/90 font-light leading-relaxed">
               <p>
                 Thoughtful spatial planning and intuitive transitions allow daily routines to unfold with natural rhythm. By mapping how morning and evening sunlight wash across living areas, we carve spaces that evolve harmoniously from dawn to dusk.
               </p>
@@ -60,28 +60,28 @@ export function DesignPhilosophy() {
             {/* Three architectural tenets */}
             <div className="pt-8 border-t border-[#B7AA97]/25 grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-[#9C805B] block mb-1">
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#7F6847] block mb-1">
                   01 / SPATIAL FLOW
                 </span>
-                <p className="text-xs text-[#171715]/80 font-light">
+                <p className="text-xs text-[#171715]/90 font-light">
                   Unobstructed sightlines and intuitive circulation tailored to personal living habits.
                 </p>
               </div>
 
               <div>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-[#9C805B] block mb-1">
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#7F6847] block mb-1">
                   02 / SENSORY LIGHT
                 </span>
-                <p className="text-xs text-[#171715]/80 font-light">
+                <p className="text-xs text-[#171715]/90 font-light">
                   Diffused natural illumination paired with indirect 2700K circadian warm coves.
                 </p>
               </div>
 
               <div>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-[#9C805B] block mb-1">
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#7F6847] block mb-1">
                   03 / MATERIAL HONESTY
                 </span>
-                <p className="text-xs text-[#171715]/80 font-light">
+                <p className="text-xs text-[#171715]/90 font-light">
                   Living timber, honest travertine stone, and unpretentious architectural joinery.
                 </p>
               </div>

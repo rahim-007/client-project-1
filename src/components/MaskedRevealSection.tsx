@@ -78,20 +78,20 @@ export function MaskedRevealSection() {
         {/* Editorial Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16 border-b border-[#B7AA97]/25 pb-8">
           <div className="max-w-2xl">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#9C805B] block mb-3">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#7F6847] font-medium block mb-3">
               SPATIAL TRANSFORMATION LENS
             </span>
             <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-[#171715] leading-[1.08]">
-              Architectural Metamorphosis<span className="text-[#9C805B]">.</span>
+              Architectural Metamorphosis<span className="text-[#7F6847]">.</span>
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[#171715]/75 font-light leading-relaxed">
+            <p className="mt-4 text-base sm:text-lg text-[#171715]/90 font-light leading-relaxed">
               Every renovation at S.M.S DECORS is an act of deliberate refinement.
               Drag the architectural divider to witness how raw structural frameworks are transformed into
               acoustically balanced, light-filled sanctuaries.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAF8F4] border border-[#B7AA97]/30 text-xs font-mono uppercase tracking-widest text-[#9C805B] shadow-sm">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAF8F4] border border-[#7F6847]/30 text-xs font-mono uppercase tracking-widest text-[#7F6847] shadow-sm">
             <ArrowsLeftRight size={14} weight="bold" />
             <span>DRAG DIVIDER TO COMPARE</span>
           </div>

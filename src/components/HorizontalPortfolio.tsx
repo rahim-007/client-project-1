@@ -84,13 +84,13 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
         {/* Editorial Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-[#B7AA97]/25 pb-8">
           <div>
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#9C805B] block mb-3">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#7F6847] block mb-3">
               SPATIAL DOSSIER · SELECTED PORTFOLIO
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-[#171715] leading-[1.08]">
-              Selected Architectural Works<span className="text-[#9C805B]">.</span>
+              Selected Architectural Works<span className="text-[#7F6847]">.</span>
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#171715]/75 font-light max-w-xl leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-[#171715]/90 font-light max-w-xl leading-relaxed">
               A curated catalog of completed residences, workplace environments, and structural renovations across Chennai.
             </p>
           </div>
@@ -114,7 +114,7 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
         </div>
 
         {/* Controls Bar for Manual Navigation & View Switcher */}
-        <div className="flex items-center justify-between mt-6 text-xs font-mono uppercase tracking-widest text-[#9C805B]">
+        <div className="flex items-center justify-between mt-6 text-xs font-mono uppercase tracking-widest text-[#7F6847]">
           <div className="flex items-center gap-3">
             <span className="text-[#171715] font-semibold">{filteredProjects.length} CURATED PROJECTS</span>
             <span className="hidden sm:inline text-[#B7AA97]">· CHENNAI ATELIER</span>
@@ -188,7 +188,7 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
               {filteredProjects.map((project, idx) => (
                 <article
                   key={project.id}
-                  className="w-[320px] sm:w-[420px] md:w-[480px] group flex flex-col justify-between bg-[#FAF8F4] border border-[#B7AA97]/30 p-4 sm:p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#9C805B] cursor-pointer"
+                  className="w-[320px] sm:w-[420px] md:w-[480px] group flex flex-col justify-between bg-[#FAF8F4] border border-[#B7AA97]/30 p-4 sm:p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#7F6847] cursor-pointer"
                   onClick={() => onSelectProject(project)}
                 >
                   {/* Image Frame with Subtle Zoom on Hover */}
@@ -217,21 +217,21 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
                     {/* Bottom Overlay Info */}
                     <div className="absolute bottom-3 left-3 right-3 bg-[#171715]/85 backdrop-blur-md text-[#FAF8F4] px-3.5 py-2 flex items-center justify-between text-xs font-mono">
                       <span>{project.location}</span>
-                      <span className="text-[#9C805B]">{project.area}</span>
+                      <span className="text-[#7F6847]">{project.area}</span>
                     </div>
                   </div>
 
                   {/* Card Meta & Typography */}
                   <div className="mt-4 px-1 flex flex-col justify-between flex-grow">
                     <div>
-                      <div className="flex items-center justify-between text-[11px] font-mono text-[#9C805B] uppercase mb-1">
+                      <div className="flex items-center justify-between text-[11px] font-mono text-[#7F6847] uppercase mb-1">
                         <span>CATALOG ITEM 0{idx + 1}</span>
                         <span>CHENNAI</span>
                       </div>
-                      <h3 className="font-serif text-xl sm:text-2xl font-light text-[#171715] group-hover:text-[#9C805B] transition-colors leading-snug">
+                      <h3 className="font-serif text-xl sm:text-2xl font-light text-[#171715] group-hover:text-[#7F6847] transition-colors leading-snug">
                         {project.title}
                       </h3>
-                      <p className="mt-1.5 text-xs sm:text-sm text-[#171715]/75 font-light line-clamp-2 leading-relaxed">
+                      <p className="mt-1.5 text-xs sm:text-sm text-[#171715]/90 font-light line-clamp-2 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
@@ -254,7 +254,7 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
                           e.stopPropagation();
                           onSelectProject(project);
                         }}
-                        className="flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-[#9C805B] hover:text-[#171715] transition-colors font-medium"
+                        className="flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-[#7F6847] hover:text-[#171715] transition-colors font-medium"
                       >
                         <span>INSPECT</span>
                         <ArrowUpRight size={13} weight="bold" />
@@ -270,7 +270,7 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
           <div className="max-w-7xl mx-auto px-6 sm:px-12 md:px-16 mt-4">
             <div className="w-full h-1 bg-[#B7AA97]/25 rounded-full overflow-hidden">
               <div
-                className="h-full bg-[#9C805B] transition-all duration-100 ease-out"
+                className="h-full bg-[#7F6847] transition-all duration-100 ease-out"
                 style={{ width: `${Math.max(15, Math.round(scrollProgress * 100))}%` }}
               />
             </div>
@@ -283,7 +283,7 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
             {filteredProjects.map((project, idx) => (
               <article
                 key={project.id}
-                className="group flex flex-col justify-between bg-[#FAF8F4] border border-[#B7AA97]/30 p-4 sm:p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#9C805B] cursor-pointer"
+                className="group flex flex-col justify-between bg-[#FAF8F4] border border-[#B7AA97]/30 p-4 sm:p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#7F6847] cursor-pointer"
                 onClick={() => onSelectProject(project)}
               >
                 <div className="relative h-[220px] sm:h-[260px] w-full overflow-hidden bg-[#171715]">
@@ -306,20 +306,20 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
                   </div>
                   <div className="absolute bottom-3 left-3 right-3 bg-[#171715]/85 backdrop-blur-md text-[#FAF8F4] px-3.5 py-2 flex items-center justify-between text-xs font-mono">
                     <span>{project.location}</span>
-                    <span className="text-[#9C805B]">{project.area}</span>
+                    <span className="text-[#7F6847]">{project.area}</span>
                   </div>
                 </div>
 
                 <div className="mt-4 px-1 flex flex-col justify-between flex-grow">
                   <div>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-[#9C805B] uppercase mb-1">
+                    <div className="flex items-center justify-between text-[11px] font-mono text-[#7F6847] uppercase mb-1">
                       <span>CATALOG ITEM 0{idx + 1}</span>
                       <span>CHENNAI</span>
                     </div>
-                    <h3 className="font-serif text-xl sm:text-2xl font-light text-[#171715] group-hover:text-[#9C805B] transition-colors leading-snug">
+                    <h3 className="font-serif text-xl sm:text-2xl font-light text-[#171715] group-hover:text-[#7F6847] transition-colors leading-snug">
                       {project.title}
                     </h3>
-                    <p className="mt-1.5 text-xs sm:text-sm text-[#171715]/75 font-light line-clamp-2 leading-relaxed">
+                    <p className="mt-1.5 text-xs sm:text-sm text-[#171715]/90 font-light line-clamp-2 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
@@ -341,7 +341,7 @@ export function HorizontalPortfolio({ onSelectProject }: HorizontalPortfolioProp
                         e.stopPropagation();
                         onSelectProject(project);
                       }}
-                      className="flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-[#9C805B] hover:text-[#171715] transition-colors font-medium"
+                      className="flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-[#7F6847] hover:text-[#171715] transition-colors font-medium"
                     >
                       <span>INSPECT</span>
                       <ArrowUpRight size={13} weight="bold" />
