@@ -441,15 +441,15 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full text-center max-w-3xl mx-auto flex flex-col items-center pointer-events-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] mb-4 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            <span className="hero-eyebrow-sharp text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] mb-4">
               CRAFTED FOR THE WAY YOU LIVE
             </span>
 
-            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-light tracking-tight text-[#FFFFFF] leading-[1.04] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+            <h1 className="hero-heading-glow font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] tracking-tight text-[#FFFFFF] leading-[1.04]">
               Spaces that speak<span className="text-[#E5C384]">.</span>
             </h1>
 
-            <p className="mt-5 text-base sm:text-xl text-[#FAF8F4] font-light leading-relaxed max-w-xl [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            <p className="hero-subtitle-sharp mt-4 sm:mt-5 text-[17px] sm:text-xl leading-relaxed max-w-md sm:max-w-xl mx-auto text-balance">
               Interiors shaped around your life, your taste, your vision.
             </p>
 
@@ -482,16 +482,16 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#E5C384]/35 mb-4 shadow-lg">
               <span className="w-2 h-2 rounded-full bg-[#E5C384] animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#E5C384] font-medium">
+              <span className="hero-eyebrow-sharp text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#E5C384] font-medium">
                 01 / THE ART OF LIVING
               </span>
             </div>
 
-            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FFFFFF] leading-[1.08] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+            <h2 className="hero-heading-glow font-serif text-4xl sm:text-6xl md:text-7xl tracking-tight text-[#FFFFFF] leading-[1.08]">
               A feeling called home<span className="text-[#E5C384]">.</span>
             </h2>
 
-            <p className="mt-5 text-base sm:text-lg text-[#FAF8F4] font-light leading-relaxed [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            <p className="hero-subtitle-sharp mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed">
               Thoughtful layouts, tactile materials and considered details come together to create spaces that feel unmistakably yours.
             </p>
 
@@ -520,16 +520,16 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#E5C384]/35 mb-4 shadow-lg md:ml-auto">
               <span className="w-2 h-2 rounded-full bg-[#E5C384] animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#E5C384] font-medium">
+              <span className="hero-eyebrow-sharp text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#E5C384] font-medium">
                 02 / MATERIALS &amp; DETAIL
               </span>
             </div>
 
-            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#FFFFFF] leading-[1.08] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+            <h2 className="hero-heading-glow font-serif text-4xl sm:text-6xl md:text-7xl tracking-tight text-[#FFFFFF] leading-[1.08]">
               Every detail matters<span className="text-[#E5C384]">.</span>
             </h2>
 
-            <p className="mt-5 text-base sm:text-lg text-[#FAF8F4] font-light leading-relaxed [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            <p className="hero-subtitle-sharp mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed">
               From warm timber and refined finishes to light, texture and proportion, every element has a purpose.
             </p>
 
@@ -556,15 +556,15 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
             }}
             className="col-start-1 row-start-1 w-full text-center max-w-3xl mx-auto flex flex-col items-center pointer-events-auto"
           >
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] mb-4 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            <span className="hero-eyebrow-sharp text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#E5C384] mb-4">
               S.M.S DECORS · CHENNAI
             </span>
 
-            <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light tracking-tight text-[#FFFFFF] leading-[1.04] [text-shadow:_0_2px_14px_rgba(0,0,0,0.85),_0_1px_4px_rgba(0,0,0,0.95)]">
+            <h2 className="hero-heading-glow font-serif text-5xl sm:text-7xl md:text-8xl tracking-tight text-[#FFFFFF] leading-[1.04]">
               Your vision. Our craft<span className="text-[#E5C384]">.</span>
             </h2>
 
-            <p className="mt-5 text-base sm:text-xl text-[#FAF8F4] font-light leading-relaxed max-w-xl [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            <p className="hero-subtitle-sharp mt-4 sm:mt-5 text-[17px] sm:text-xl leading-relaxed max-w-md sm:max-w-xl mx-auto text-balance">
               Let&apos;s create a space worth coming home to.
             </p>
 
