@@ -25,6 +25,13 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
   const [initialFrameLoaded, setInitialFrameLoaded] = useState<boolean>(false);
   const prefersReducedMotion = usePrefersReducedMotion();
 
+  // Responsive frame directory: detects mobile/portrait screen vs desktop widescreen
+  const [frameDir, setFrameDir] = useState<string>(() => {
+    if (typeof window === 'undefined') return '/frames';
+    const isPortrait = window.innerWidth < 768 || window.innerHeight > window.innerWidth;
+    return isPortrait ? '/frames-mobile' : '/frames';
+  });
+
   // Direct 1:1 scroll tracking: zero input lag, 100% responsive to user wheel & trackpad
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -79,20 +86,20 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
   );
   const stage4Pointer = useTransform(scrollYProgress, (p) => (p >= 0.90 ? 'auto' : 'none'));
 
-  // Scrim opacity drivers localized to active text blocks
+  // Scrim opacity drivers localized to active text blocks - calibrated for vibrant architectural clarity
   const leftScrimOpacity = useTransform(
     scrollYProgress,
     [0.21, 0.28, 0.52, 0.58],
-    [0, 0.72, 0.72, 0]
+    [0, 0.55, 0.55, 0]
   );
   const rightScrimOpacity = useTransform(
     scrollYProgress,
     [0.55, 0.62, 0.85, 0.91],
-    [0, 0.72, 0.72, 0]
+    [0, 0.55, 0.55, 0]
   );
 
 
-  // Draw image preserving 16:9 composition without distortion
+  // Draw image preserving composition with high-definition cover framing
   const drawFrame = useCallback((img: HTMLImageElement) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -102,8 +109,8 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
 
     const cw = canvas.width;
     const ch = canvas.height;
-    const iw = img.naturalWidth || 1280;
-    const ih = img.naturalHeight || 720;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
 
     if (!iw || !ih) return;
 
@@ -117,12 +124,18 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     ctx.drawImage(img, nx, ny, nw, nh);
   }, []);
 
-  // Handle canvas sizing with performance-optimized DPR cap and opaque context
+  // Handle canvas sizing with high-DPI Retina support and high-precision smoothing
   const handleResize = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+    // Responsive orientation detection: switch seamlessly between portrait and landscape frame sequences
+    const isPortrait = window.innerWidth < 768 || window.innerHeight > window.innerWidth;
+    const currentDir = isPortrait ? '/frames-mobile' : '/frames';
+    setFrameDir(prev => (prev !== currentDir ? currentDir : prev));
+
+    // Support crisp Retina displays (up to 2.0x DPR, avoiding blurriness on 3x screens while keeping 60fps)
+    const dpr = Math.min(window.devicePixelRatio || 1, 2.0);
     const rect = canvas.getBoundingClientRect();
 
     canvas.width = Math.round(rect.width * dpr);
@@ -131,7 +144,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
     const ctx = canvas.getContext('2d', { alpha: false });
     if (ctx) {
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'medium';
+      ctx.imageSmoothingQuality = 'high';
     }
 
     const activeIndex = Math.max(0, lastDrawnFrameRef.current);
@@ -181,7 +194,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       const img = new Image();
       img.decoding = 'async';
       const frameNum = String(idx + 1).padStart(4, '0');
-      img.src = `/frames/frame-${frameNum}.jpg`;
+      img.src = `${frameDir}/frame-${frameNum}.jpg`;
       img.onload = () => {
         if (onLoaded) onLoaded();
         if (Math.abs(targetFrameRef.current - idx) <= 2) {
@@ -229,7 +242,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       clearTimeout(timer2);
       window.removeEventListener('resize', handleResize);
     };
-  }, [drawFrame, handleResize]);
+  }, [drawFrame, handleResize, frameDir]);
 
   // Sync scrollYProgress directly with state-change guard (prevents unnecessary re-renders)
   useEffect(() => {
@@ -322,7 +335,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
       <section id="hero" className="relative w-full min-h-screen bg-[#171715] text-[#FAF8F4] flex items-center justify-center p-8 sm:p-16">
         <div className="absolute inset-0">
           <img
-            src="/frames/frame-0001.jpg"
+            src={`${frameDir}/frame-0001.jpg`}
             alt="S.M.S DECORS Luxury Architectural Interior"
             className="w-full h-full object-cover opacity-60"
           />
@@ -370,33 +383,33 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
         {/* HTML5 Canvas for continuous scroll-controlled frame sequence */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none will-change-transform"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none will-change-transform contrast-[1.04] brightness-[1.02]"
         />
 
         {/* Fallback poster while frame 1 loads */}
         {!initialFrameLoaded && (
           <img
-            src="/frames/frame-0001.jpg"
+            src={`${frameDir}/frame-0001.jpg`}
             alt="Architectural Interior Establishing Shot"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           />
         )}
 
-        {/* Subtle Ambient Vignettes */}
+        {/* Subtle Ambient Vignettes: gentle top/bottom gradient so architectural lighting remains radiant */}
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[#171715]/90 via-[#171715]/40 to-[#171715]/55 pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-t from-[#171715]/75 via-transparent to-[#171715]/45 pointer-events-none"
           aria-hidden="true"
         />
 
         {/* Dynamic localized scrims behind Stage 2 (Left) and Stage 3 (Right) */}
         <motion.div
           style={{ opacity: leftScrimOpacity }}
-          className="absolute inset-y-0 left-0 w-full md:w-3/5 bg-gradient-to-r from-[#171715]/95 via-[#171715]/60 to-transparent pointer-events-none"
+          className="absolute inset-y-0 left-0 w-full md:w-3/5 bg-gradient-to-t md:bg-gradient-to-r from-[#171715]/80 via-[#171715]/35 to-transparent pointer-events-none"
           aria-hidden="true"
         />
         <motion.div
           style={{ opacity: rightScrimOpacity }}
-          className="absolute inset-y-0 right-0 w-full md:w-3/5 bg-gradient-to-l from-[#171715]/95 via-[#171715]/60 to-transparent pointer-events-none"
+          className="absolute inset-y-0 right-0 w-full md:w-3/5 bg-gradient-to-t md:bg-gradient-to-l from-[#171715]/80 via-[#171715]/35 to-transparent pointer-events-none"
           aria-hidden="true"
         />
 
