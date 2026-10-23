@@ -449,7 +449,7 @@ export function Hero({ onExploreWork, onDiscussProject }: HeroProps) {
               Spaces that speak<span className="text-[#E5C384]">.</span>
             </h1>
 
-            <p className="mt-5 text-base sm:text-xl text-[#FAF8F4] font-light leading-relaxed max-w-xl [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            <p className="mt-5 text-base sm:text-xl text-[#FFFFFF] font-medium sm:font-normal leading-relaxed max-w-xl [text-shadow:_0_1px_3px_rgba(0,0,0,1),_0_2px_12px_rgba(0,0,0,0.95),_0_0_24px_rgba(0,0,0,0.85)]">
               Interiors shaped around your life, your taste, your vision.
             </p>
 
